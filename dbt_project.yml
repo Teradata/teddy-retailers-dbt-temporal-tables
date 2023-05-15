@@ -35,3 +35,7 @@ models:
     +materialized: view
     staging:
       +materialized: view
+
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['teradata_utils', 'dbt_utils']

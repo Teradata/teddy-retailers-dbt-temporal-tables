@@ -1,6 +1,6 @@
 with order_products as (
 
-    select * from {{ ref('stg_order_products') }}
+    select * from {{ ref('all_order_products') }}
 
 ),
 
