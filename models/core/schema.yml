@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: all_orders
+    config:
+      materialized: incremental
+      unique_key: order_id
+      incremental_strategy: delete+insert
+  - name: all_order_products
+    config:
+      materialized: incremental
