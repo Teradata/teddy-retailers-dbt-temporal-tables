@@ -1,15 +1,36 @@
-Welcome to your new dbt project!
+# Teddy Retailers Advanced dbt with Teradata Vantage (Summary for now)
 
-### Using the starter project
+## Content of Demo
+This demo covers the following advanced dbt concepts with Teradata Vantage:
+- Incremental Materialization
+    - Delete + insert strategy (note: no updates are supported due to a bug)
+    - Append
+- Macros
+    - equal_rowcount
+    - unique_combination_of_columns
+- Teradata Configurations
+    - index definition
+    - define collection of statistics (through post_hooks)
 
-Try running the following commands:
-- dbt run
-- dbt test
+## Transformations
+### Normalized Schema
+- customers
+- orders
+- order_products
+- products
+### Dimmensional Data
+- fct_order_details (contains foreign keys to all dimmensions)
+- dim_customers
+- dim_orders
+- dim_products
 
+## Execution
+- Tnitial reading of data to set_up the sources including initial state of transaction tables.
+- run dbt
+- execute the query scripts to see result
+- Second reading of data to load the delta on transaction tables.
+- run dbt
+- execute the query scripts to see delta on results
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+## This is just a summary to explain current status.
+
