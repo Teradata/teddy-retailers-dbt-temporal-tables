@@ -11,13 +11,12 @@ orders as (
 final as (
 
     select 
-        orders.order_id,
-        orders.customer_id as customer_id,
-        orders.order_date as order_date,
+        product_id,
         sum(quantity) as item_quantity,
-        sum(amount) as total_value
+        sum(amount) as product_revenue,
+        max(orders.order_date) as last_ordered
     From product_order_details
-    LEFT JOIN orders on product_order_details.order_id = orders.order_id
-    GROUP BY 1, 2, 3
+    left join orders on orders.order_id = product_order_details.order_id
+    GROUP BY 1
 )
 select * from final

@@ -23,6 +23,12 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+
+
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['teradata_utils', 'dbt_utils']
+
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
@@ -35,7 +41,3 @@ models:
     +materialized: view
     staging:
       +materialized: view
-
-dispatch:
-  - macro_namespace: dbt_utils
-    search_order: ['teradata_utils', 'dbt_utils']

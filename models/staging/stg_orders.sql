@@ -1,3 +1,4 @@
+
 with source as (
 
     select * from {{ source('teddy_retailers', 'source_orders')}}

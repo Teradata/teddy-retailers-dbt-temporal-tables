@@ -14,6 +14,7 @@ final as (
     select
         order_products.order_id,
         order_products.product_id,
+        product_category as category,
         products.price_dollars as unit_price,
         order_products.product_quantity as quantity,
         unit_price * quantity as amount

@@ -1,10 +1,8 @@
-{{
-    config(
-        materialized='incremental',
-        unique_key = ['order_id', 'product_id'],
-        incremental_strategy = 'delete+insert'
-    )
-}}
+{{ config(
+  post_hook=[
+    "COLLECT STATISTICS ON  {{ this }} COLUMN (order_id,  product_id);"
+    ]
+)}}
 
 with add_new_order_products as (
 
