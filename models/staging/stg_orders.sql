@@ -11,7 +11,7 @@ renamed as (
         id as order_id,
         customer_id,
         order_date
-        -- git status
+        -- status
     from source
 
 )
