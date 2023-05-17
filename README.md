@@ -1,6 +1,6 @@
 # Teddy Retailers Advanced dbt with Teradata Vantage
 
-In this project we showcase the integration of dbt with Teradata Vantage from an advanced user perspective. If you are a new to data engineering with dbt we recommend that you start with our [introductory project](https://github.com/Teradata/jaffle_shop-dev)
+In this project we showcase the integration of dbt with Teradata Vantage from an advanced user perspective. If you are a new to data engineering with dbt we recommend that you start with our ![introductory project](https://github.com/Teradata/jaffle_shop-dev)
 
 The advanced use cases showcased in the demo are the following:
 
@@ -10,14 +10,39 @@ The advanced use cases showcased in the demo are the following:
 
 The application of these concepts is illustrated through the ELT process of `teddy_retailers`, a fictional store. Through dbt driven transformations we transform source data from `teddy_retailers` transactional database into a star schema ready for analytics.
 
-The source data consists of the following tables customers, orders, products, and order_products. According to the following Entity Relations Diagram.
+The source data consists of the following tables customers, orders, products, and order_products, according to the following Entity Relations Diagram.
 
-![Teddy Retailers ERD](/etc/teddy_retailers_erd.png)
+![Teddy Retailers ERD](/etc/teddy_retailers_initial_erd.png)
 
-## The Demo Project
+After the dbt driven transformations the `fact table` fct_order_details is created, this table contains all quantitive data related to the orders (facts), and the foreign keys to link these facts to all other dimmensions. A dimension table is created for each of the categorical values, customers, orders, products, according to the following Entity Relations Diagram.
+![Teddy Retailers ERD](/etc/teddy_retailers_final_erd.png)
 
-### Objective of the Demo
+## Running the Project
 
+### Pre-requisites
+* Access to a Teradata Vantage Instance. You can provision one for free at ![ClearScape Analytics Experience](https://clearscape.teradata.com/sign-in)
+* Python 3.9 or above (recommended).
+
+### Steps
+#### Setting Up Environment
+* Create a python virtual environment `python -m venv venv`
+* Activate yur python virtual environment according to your operating system.
+* Clone this repository
+* CD into the directory that contains your clonned version of this repository.
+* Create the profile teddy_retailers in your `~/.dbt/profiles.yml`. You might need to create this folder and file if this is the first dbt project that you have created or clonned in your working environment.
+
+'''
+teddy_retailers:
+  target: dev
+  outputs:
+    dev:
+      type: teradata
+      server: <Your server host>
+      schema: teddy_retailers
+      username: <Your server user>
+      password: <Your server password>
+      tmode: ANSI
+'''
 
 
 
