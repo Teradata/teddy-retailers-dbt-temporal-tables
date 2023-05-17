@@ -1,6 +1,6 @@
 # Teddy Retailers Advanced dbt with Teradata Vantage
 
-In this project we showcase the integration of dbt with Teradata Vantage from an advanced user perspective. If you are a new to data engineering with dbt we recommend that you start with our ![introductory project](https://github.com/Teradata/jaffle_shop-dev)
+In this project we showcase the integration of dbt with Teradata Vantage from an advanced user perspective. If you are a new to data engineering with dbt we recommend that you start with our [introductory project](https://github.com/Teradata/jaffle_shop-dev)
 
 The advanced use cases showcased in the demo are the following:
 
@@ -12,15 +12,20 @@ The application of these concepts is illustrated through the ELT process of `ted
 
 The source data consists of the following tables customers, orders, products, and order_products, according to the following Entity Relations Diagram.
 
+
 ![Teddy Retailers ERD](/etc/teddy_retailers_initial_erd.png)
 
+
 After the dbt driven transformations the `fact table` fct_order_details is created, this table contains all quantitive data related to the orders (facts), and the foreign keys to link these facts to all other dimmensions. A dimension table is created for each of the categorical values, customers, orders, products, according to the following Entity Relations Diagram.
+
+
 ![Teddy Retailers ERD](/etc/teddy_retailers_final_erd.png)
+
 
 ## Running the Project
 
 ### Pre-requisites
-* Access to a Teradata Vantage Instance. You can provision one for free at ![ClearScape Analytics Experience](https://clearscape.teradata.com/sign-in)
+* Access to a Teradata Vantage Instance. You can provision one for free at [ClearScape Analytics Experience](https://clearscape.teradata.com/sign-in)
 * Python 3.9 or above (recommended).
 
 ### Steps
@@ -31,7 +36,7 @@ After the dbt driven transformations the `fact table` fct_order_details is creat
 * CD into the directory that contains your clonned version of this repository.
 * Create the profile teddy_retailers in your `~/.dbt/profiles.yml`. You might need to create this folder and file if this is the first dbt project that you have created or clonned in your working environment.
 
-'''
+```
 teddy_retailers:
   target: dev
   outputs:
@@ -42,7 +47,7 @@ teddy_retailers:
       username: <Your server user>
       password: <Your server password>
       tmode: ANSI
-'''
+```
 
 
 
