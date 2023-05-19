@@ -5,4 +5,5 @@ select
     sum(teddy_retailers.fct_order_details.amount) as total_value
 From teddy_retailers.dim_orders
 LEFT JOIN  teddy_retailers.fct_order_details on teddy_retailers.fct_order_details.order_id = teddy_retailers.dim_orders.order_id
-GROUP BY 1, 2;
+GROUP BY 1, 2
+ORDER BY total_value DESC;

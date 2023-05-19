@@ -6,7 +6,16 @@
 
 with add_new_order_products as (
 
-    select * from {{ ref('stg_order_products') }}
+  select * from {{ ref('stg_order_products') }}
+
+),
+final as (
+  select 
+    order_id,
+    product_id,
+    sum(product_quantity) as product_quantity
+  from add_new_order_products
+  group by 1, 2
 
 )
-select * from add_new_order_products
+select * from final

@@ -1,7 +1,7 @@
 drop table teddy_retailers.source_orders;
 CREATE SET TABLE teddy_retailers.source_orders AS
 (
-  SELECT *
+  SELECT id, customer_id, order_date
     FROM (
 		LOCATION='/gs/storage.googleapis.com/clearscape_analytics_demo_data/DEMO_dbtAdvanced/primary_orders_second.csv') as orders
 ) WITH DATA;
