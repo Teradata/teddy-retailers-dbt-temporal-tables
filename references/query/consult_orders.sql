@@ -10,8 +10,7 @@ ORDER BY total_value DESC;
 
 select 
     teddy_retailers.dim_orders.order_status,
-    count(teddy_retailers.dim_orders.order_id) as currently_in,
+    count(teddy_retailers.dim_orders.order_id) as currently_in
 From teddy_retailers.dim_orders
 GROUP BY 1
-ORDER BY currently_in DESC
-ROLLUP;
+ORDER BY currently_in DESC;
