@@ -16,10 +16,10 @@ products as (
 final as (
 
     select
-        order_products.order_id,
-        order_products.product_id,
-        orders.customer_id,
-        orders.order_date,
+        order_products.order_id as order_id,
+        order_products.product_id as product_id,
+        orders.customer_id as customer_id,
+        orders.order_date as order_date,
         products.price_dollars as unit_price,
         order_products.product_quantity as quantity,
         unit_price * quantity as amount
