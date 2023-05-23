@@ -1,10 +1,10 @@
-select 
+SELECT 
     teddy_retailers.dim_products.product_id,
     teddy_retailers.dim_products.product_name,
-    sum(teddy_retailers.fct_order_details.quantity) as item_quantity,
-    sum(teddy_retailers.fct_order_details.amount) as product_revenue,
-    max(teddy_retailers.fct_order_details.order_date) as last_ordered
-From teddy_retailers.dim_products
-left join teddy_retailers.fct_order_details on teddy_retailers.fct_order_details.product_id = teddy_retailers.dim_products.product_id
+    SUM(teddy_retailers.fct_order_details.quantity) AS item_quantity,
+    SUM(teddy_retailers.fct_order_details.amount) AS product_revenue,
+    MAX(teddy_retailers.fct_order_details.order_date) AS last_ordered
+FROM teddy_retailers.dim_products
+LEFT JOIN teddy_retailers.fct_order_details ON teddy_retailers.fct_order_details.product_id = teddy_retailers.dim_products.product_id
 GROUP BY 1, 2
 ORDER BY product_revenue DESC;
