@@ -11,7 +11,8 @@ renamed as (
         id as order_id,
         customer_id,
         order_date,
-        status as order_status
+        status as order_status,
+        order_duration
     from source
 
 )

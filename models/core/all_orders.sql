@@ -1,14 +1,12 @@
-{{ config(
-  post_hook=[
-    "ALTER TABLE {{ this }}
-  ADD order_duration PERIOD(TIMESTAMP(6) WITH TIME ZONE) NOT NULL
-  AS TRANSACTIONTIME;"
-    ]
-)}}
+WITH add_new_orders AS (
 
-with add_new_orders as (
+  SELECT * FROM {{ ref('stg_orders') }}
+  {% if is_incremental() %}
 
-   select * from {{ ref('stg_orders') }}
+  -- this filter will only be applied on an incremental run
+  WHERE BEGIN(order_duration) > (SELECT MAX(BEGIN(order_duration)) FROM {{ this }})
+
+  {% endif %}
 
 )
 select * from add_new_orders

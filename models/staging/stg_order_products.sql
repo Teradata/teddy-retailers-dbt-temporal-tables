@@ -9,7 +9,8 @@ renamed as (
     select
         order_id,
         product_id,
-        product_quantity
+        product_quantity,
+        order_product_duration
 
     from source
 
