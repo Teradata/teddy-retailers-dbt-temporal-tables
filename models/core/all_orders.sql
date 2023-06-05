@@ -1,3 +1,9 @@
+{{ config(
+  post_hook=[
+    "COLLECT STATISTICS ON  {{ this }} COLUMN (order_id,  customer_id);"
+    ]
+)}}
+
 WITH add_new_orders AS (
 
   SELECT * FROM {{ ref('stg_orders') }}
