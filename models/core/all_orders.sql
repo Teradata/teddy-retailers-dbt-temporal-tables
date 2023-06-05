@@ -1,6 +1,8 @@
 {{ config(
   post_hook=[
-    "COLLECT STATISTICS ON  {{ this }} COLUMN (order_id,  customer_id);"
+    "ALTER TABLE {{ this }}
+  ADD order_duration PERIOD(TIMESTAMP(6) WITH TIME ZONE) NOT NULL
+  AS TRANSACTIONTIME;"
     ]
 )}}
 

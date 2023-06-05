@@ -6,7 +6,6 @@ models:
       materialized: incremental
       unique_key: order_id
       incremental_strategy: delete+insert
-      index: 'UNIQUE PRIMARY INDEX (order_id)'
   - name: all_order_products
     config:
       materialized: incremental
