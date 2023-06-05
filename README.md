@@ -1,4 +1,4 @@
-# Teddy Retailers Advanced dbt with Teradata Vantage
+# Teddy Retailers Advanced dbt with Teradata Vantage Temporal Tables
 
 This project showcases the integration of dbt with Teradata Vantage from an advanced user perspective. If you are new to data engineering with dbt we recommend that you start with our [introductory project.](https://github.com/Teradata/jaffle_shop-dev)
 
