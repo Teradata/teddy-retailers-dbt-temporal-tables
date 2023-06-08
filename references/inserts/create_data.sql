@@ -19,7 +19,7 @@ CREATE MULTISET TABLE teddy_retailers.source_orders AS
 ALTER TABLE teddy_retailers.source_orders
   ADD order_duration PERIOD(TIMESTAMP(6) WITH TIME ZONE) NOT NULL
   AS TRANSACTIONTIME;
-CREATE SET TABLE teddy_retailers.source_order_products AS
+CREATE MULTISET TABLE teddy_retailers.source_order_products AS
 (
   SELECT order_id, product_id, product_quantity
     FROM (
