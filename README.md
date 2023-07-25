@@ -21,7 +21,7 @@ The data in two of our sources `sources_orders`, and `source_order_products`, is
 ## Running the Project
 
 ### Pre-requisites
-* Access to a Teradata Vantage Instance. You can provision one for free at [ClearScape Analytics Experience.](https://clearscape.teradata.com/sign-in)
+* Access to a Teradata Vantage Instance. You can provision one for free at [ClearScape Analytics Experience.](https://clearscape.teradata.com/sign-in?utm_source=github&utm_medium=readme&utm_campaign=dbt-temp-tables)
 * Your favorite database client.
 * Python 3.9 - 3.10 (recommended).
 
