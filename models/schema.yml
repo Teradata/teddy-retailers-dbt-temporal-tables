@@ -8,4 +8,5 @@ sources:
       - name: source_products
       - name: source_orders
       - name: source_order_products
+      - name: source_orders_nt
   
