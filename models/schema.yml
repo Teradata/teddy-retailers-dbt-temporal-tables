@@ -5,7 +5,28 @@ sources:
     description: These are the tables that our extraction software manages most likely through batch jobs. 
     tables:
       - name: source_customers
+        columns:
+        - name: id
+          tests:
+          - unique
+          - not_null
       - name: source_products
+        columns:
+        - name: id
+          tests:
+          - unique
+          - not_null
       - name: source_orders
+        columns:
+        - name: id
+          tests:
+            - not_null
       - name: source_order_products
+        columns:
+        - name: order_id
+          tests:
+          - not_null
+        - name: product_id
+          tests:
+          - not_null
   
