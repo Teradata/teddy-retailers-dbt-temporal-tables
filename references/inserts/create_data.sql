@@ -3,13 +3,15 @@ CREATE MULTISET TABLE teddy_retailers.source_products AS
   SELECT id, name, CAST(category AS CHAR(30)) as category, price_cents
     FROM (
 		LOCATION='/gs/storage.googleapis.com/clearscape_analytics_demo_data/DEMO_dbtAdvanced/raw_products.csv') as products
-) WITH DATA;
+) WITH DATA
+UNIQUE PRIMARY INDEX (id);
 CREATE MULTISET TABLE teddy_retailers.source_customers AS
 (
   SELECT id, name, surname, email
     FROM (
 		LOCATION='/gs/storage.googleapis.com/clearscape_analytics_demo_data/DEMO_dbtAdvanced/raw_customers.csv') as customers
-) WITH DATA;
+) WITH DATA
+UNIQUE PRIMARY INDEX (id);
 CREATE MULTISET TABLE teddy_retailers.source_orders AS
 (
   SELECT id , customer_id, CAST(status AS CHAR(20)) as status, order_date
