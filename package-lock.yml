@@ -1,0 +1,6 @@
+packages:
+- package: dbt-labs/dbt_utils
+  version: 1.1.1
+- package: Teradata/teradata_utils
+  version: 1.1.1
+sha1_hash: e9be2468a850afc04d79a999e663084d8ab7d794

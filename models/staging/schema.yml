@@ -11,11 +11,11 @@ models:
         constraints:
           - type: not_null
       - name: first_name
-        data_type: char
+        data_type: VARCHAR(20)
       - name: last_name
-        data_type: char
+        data_type: VARCHAR(18)
       - name: email
-        data_type: char
+        data_type: VARCHAR(49)
    
   - name: stg_orders
     columns:
