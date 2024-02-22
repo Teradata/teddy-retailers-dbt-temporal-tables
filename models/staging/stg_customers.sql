@@ -6,7 +6,6 @@
 	post_hook= ["COLLECT STATISTICS INDEX (email), COLUMN ( id ) ON {{ this }};"]
 )}}
 
-
 with source as (
 
     select * from {{ source('teddy_retailers', 'source_customers')}}
