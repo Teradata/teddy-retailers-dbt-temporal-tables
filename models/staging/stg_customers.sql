@@ -2,8 +2,7 @@
 	materialized="incremental",
 	on_schema_change="append_new_columns",
 	table_kind="MULTISET",
-	index="PRIMARY INDEX ( customer_id ) INDEX (email)",
-	post_hook= ["COLLECT STATISTICS INDEX (email), COLUMN ( id ) ON {{ this }};"]
+	index="PRIMARY INDEX ( customer_id ) INDEX (email)"
 )}}
 
 with source as (
