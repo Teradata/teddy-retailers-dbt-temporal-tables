@@ -2,6 +2,31 @@ version: 2
 
 models:
   - name: stg_customers
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+   
   - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+    
   - name: stg_products
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+    
   - name: stg_order_products
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      - name: product_id
+        tests:
+          - not_null

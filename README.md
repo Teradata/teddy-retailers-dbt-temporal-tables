@@ -10,7 +10,9 @@ The source data consists of the following tables customers, orders, products, an
 
 ![Teddy Retailers Initial ERD](/etc/teddy_retailers_initial_erd.png)
 
-After the dbt driven transformations the `fact table` fct_order_details is created, this table contains all quantitive data related to the orders (facts), and the foreign keys to link these facts to all dimensions. A dimension table is created for each of the categorical values, customers, orders, and products, according to the following Entity Relations Diagram.
+After the dbt driven transformations the fact table `fct_order_details` is created, this table contains all quantitive data related to the orders (facts), and the foreign keys to link these facts to all dimensions. A dimension table is created for each of the categorical values, customers, orders, and products, according to the following Entity Relations Diagram.
+
+It is assumed that models in the marts folder are for public consumption. For this reason, a data contract is included for `fct_order_details`, this contract validates that the necessary foreign keys required to slice the facts by the corresponding dimmensions exist. 
 
 ![Teddy Retailers Final ERD](/etc/teddy_retailers_final_erd.png)
 
@@ -30,8 +32,8 @@ The data in two of the sources `sources_orders`, and `source_order_products`, is
 * Create a Python virtual environment `python -m venv venv`
 * Activate your Python virtual environment according to your operating system.
 * Install dbt-teradata `pip install dbt-teradata`
+* Install dbt-core `pip install dbt-core>=1.8.0`
 * Clone this repository.
-* CD into the directory that contains your cloned version of this repository.
 * Create the profile teddy_retailers in your `~/.dbt/profiles.yml`. You might need to create this folder and file if this is the first dbt project that you have created or cloned in your working environment.
 
 ```
@@ -44,23 +46,24 @@ teddy_retailers:
       schema: teddy_retailers
       username: <Your server user>
       password: <Your server password>
-      tmode: ANSI
+      tmode: TERA 
 ```
 
+* CD into the directory that contains your cloned version of this repository.
 * Run `dbt debug` to make sure the connection to your data warehouse is working properly. 
 * Run `dbt deps` to install the project dependencies. 
 
 #### Loading data to sources (baseline data) 
-* To load the data in your data warehouse the existence of the teddy_retailers database is assumed. A simple SQL script to achieve this is provided as create_db.sql. The exact form of this script might vary depending on the edition of Teradata Vantage you are using and your privileges on the server.
-* Once the database exists you can execute the script create_data.sql in your database client.
+* To load the data in your data warehouse the existence of the teddy_retailers database is assumed. A simple SQL script to achieve this is provided as `create_db.sql` under the `references/inserts` folder.
 * The demo project assumes that the source data is already in your warehouse, this mimics more closely the way that dbt is used in a production environment. To achieve this objective we provide public datasets available in GCP and [scripts to load those datasets into your mock data warehouse](/references/inserts/). These scripts can be executed by simply copying and pasting into your favorite database client. 
+* The script `create_data.sql` under the `references/inserts` folder loads the data into your vantage environment.
 
 #### Running and Testing Transformations
 * Run `dbt build` to execute the transformations on the baseline data.
 * `dbt build` as opposed to `dbt run` runs test on sources, or ancestor models, before creating the depending models, if the test fails, the execution stops.
 * The incremental models are created at this point.
-* Check the statistics on both all_orders and all_order_products through your database client `HELP STATS <table name>`, this permits a fast confirmation regarding the data that was transformed.
-* At this point, you can execute any of the query scripts in references/query in your database client to view the fact data sliced by a specific dimension.
+* Check the statistics on both `all_orders` and `all_order_products` through your database client `HELP STATS <table name>`, this permits a fast confirmation regarding the data that was transformed.
+* At this point, you can execute any of the query scripts in `references/query` in your database client to view the fact data sliced by a specific dimension.
 
 #### Ingesting deltas on baseline
 * To mimic the batch process of data loading, the loading of deltas on the baseline data, execute the update_data script in references/inserts.

@@ -2,10 +2,44 @@ version: 2
 
 models:
   - name: fct_order_details
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: order_id
+        data_type: smallint
+        constraints:
+          - type: not_null
+      - name: product_id
+        data_type: smallint
+        constraints:
+          - type: not_null
+      - name: customer_id
+        data_type: smallint
+        constraints:
+          - type: not_null
+      - name: order_date
+        data_type: date
+        constraints:
+          - type: not_null
+      - name: unit_price
+        data_type: smallint
+        constraints:
+          - type: not_null
+      - name: quantity
+        data_type: smallint
+        constraints:
+          - type: not_null
+      - name: amount  
+        data_type: smallint
+        constraints:
+          - type: not_null
     tests:
         - dbt_utils.equal_rowcount:
             compare_model: ref('all_order_products')
-  
+      
+
+
   - name: dim_products
 
   - name: dim_orders
