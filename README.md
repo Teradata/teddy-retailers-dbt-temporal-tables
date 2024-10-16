@@ -12,7 +12,7 @@ The source data consists of the following tables customers, orders, products, an
 
 After the dbt driven transformations the fact table `fct_order_details` is created, this table contains all quantitive data related to the orders (facts), and the foreign keys to link these facts to all dimensions. A dimension table is created for each of the categorical values, customers, orders, and products, according to the following Entity Relations Diagram.
 
-It is assumed that models in the marts folder are for public consumption. For this reason, a data contract is included for `fct_order_details`, this contract validates that the necessary foreign keys required to slice the facts by the corresponding dimmensions exist. 
+It is assumed that models in the marts folder are for public consumption. For this reason, a data contract is included for `fct_order_details`, this contract validates that the necessary foreign keys required to slice the facts by the corresponding dimmensions exist. Data tests are used to validate the models after materialization, data contracts validate the models before they are materialized.
 
 ![Teddy Retailers Final ERD](/etc/teddy_retailers_final_erd.png)
 
